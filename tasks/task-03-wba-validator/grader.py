@@ -14,7 +14,7 @@ def write(d,n,rows,fields):
         w=csv.DictWriter(f,fieldnames=fields); w.writeheader(); w.writerows(rows)
 try:
     with tempfile.TemporaryDirectory() as d:
-        write(d,"projects.csv",[{"id":"p1","canonical_name":"Kariba Dam","country_iso3":"ZWE","sectors":"energy","lat":"-16.5","lon":"28.8","location_precision":"exact"},{"id":"","canonical_name":"Kariba Dam","country_iso3":"zw","sectors":"magic","lat":"0","lon":"0","location_precision":"exact"}],["id","canonical_name","country_iso3","sectors","lat","lon","location_precision"])
+        write(d,"projects.csv",[{"id":"p1","canonical_name":"Kariba Dam","country_iso3":"ZWE","sectors":"energy","lat":"-16.5","lon":"28.8","location_precision":"exact"},{"id":"","canonical_name":"Kariba Dam","country_iso3":"zw","sectors":"magic","lat":"51.5","lon":"-0.1","location_precision":"exact"}],["id","canonical_name","country_iso3","sectors","lat","lon","location_precision"])
         write(d,"organizations.csv",[{"id":"o1","canonical_name":"Sinohydro"}],["id","canonical_name"])
         write(d,"participation_records.csv",[{"id":"r1","role":"financier","org_id":"o1"},{"id":"r2","role":"","org_id":""}],["id","role","org_id"])
         write(d,"contracts.csv",[{"id":"c1","value_original":"100","currency":""},{"id":"c2","value_original":"50","currency":"US"}],["id","value_original","currency"])
@@ -29,7 +29,7 @@ try:
         check("claim text/source/strength → error", sum("claim" in e or "source_id" in e or "evidence" in e for e in errors)>=2, 15)
         check("verbatim missing → warn", any("verbatim" in w for w in warns), 10)
         check("coords outside Africa → warn", any("bbox" in w or "outside" in w for w in warns), 15)
-        check("returns 2 lists", isinstance(errors,list) and isinstance(warns,list), 10)
+        check("returns 2 lists", isinstance(errors,list) and isinstance(warns,list), 0)
 except Exception as e:
     print(f"[FAIL] exception {e}"); import traceback; traceback.print_exc()
 print(f"\nSCORE: {score}/100 — {'SOLVED (>=85)' if score>=85 else 'NOT SOLVED'}")
