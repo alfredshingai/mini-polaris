@@ -1,0 +1,7 @@
+market,commodity,price,date,status
+Harare,maize,10.5,2024-01-01,ok
+harare ,maize,10.5,2024-01-01,ok
+Harare,maize,,2024-01-02,ok
+Bulawayo,beans,22.0,2024/01/03,ok
+Harare,maize,10.5,2024-01-01,ok
+,rice,15.0,2024-01-04,missing-market
